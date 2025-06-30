@@ -13,7 +13,10 @@ export default function TestiForm () {
         const { error } = await supabase
             .from('testimonials')
             .insert([
-                {name, meal_plan: mealPlan, message, rating}
+                {name, 
+                meal_plan: mealPlan, 
+                message, 
+                rating}
             ])
         if(error){
             console.log(error)
