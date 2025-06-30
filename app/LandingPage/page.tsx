@@ -46,7 +46,7 @@ export default function LandingPage() {
                             <Beef className='w-12 h-12 text-white bg-transparent' />
                         </div>
                         <h2 className='font-semibold text-lg bg-transparent'>Meal Customization</h2>
-                        <p className='bg-transparent'>Personalize your meals to fit your lifestyle, taste preferences, or specific dietary goals. Whether you're counting calories, avoiding certain ingredients, or just want something you love, we've got you covered.</p>
+                        <p className='bg-transparent'>Personalize your meals to fit your lifestyle, taste preferences, or specific dietary goals. Whether you are counting calories, avoiding certain ingredients, or just want something you love, we have got you covered.</p>
                     </div>
 
                     <div className='flex flex-col bg-white rounded-lg items-center justify-center shadow-md gap-y-2 px-5 py-7 md:w-1/3 hover:scale-105'>

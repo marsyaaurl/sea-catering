@@ -45,7 +45,7 @@ export default function Navbar() {
           ${pathName === '/Subscription' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Subscription</Link>
         
         <Link href="/" className={`text-sm font-semibold hover:text-orange-400 hover:border-b-2 hover:border-b-orange-400
-          ${pathName === '/Contact' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Contact</Link>
+          ${pathName === '/Profile' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Profile</Link>
         
         <Link href="/Contact" className="bg-orange-400 text-white px-3 py-1 rounded-lg text-sm font-semibold hover:bg-orange-200 hover:text-orange-400 transition">
           Login
@@ -58,7 +58,7 @@ export default function Navbar() {
           <Link href="/" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/' ? 'text-orange-400' : 'text-[#323232]'}`}>Home</Link>
           <Link href="/Menu" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Menu' ? 'text-orange-400' : 'text-[#323232]'}`}>Menu</Link>
           <Link href="/Subscription" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Subscription' ? 'text-orange-400' : 'text-[#323232]'}`}>Subscription</Link>
-          <Link href="/Contact" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Contact' ? 'text-orange-400' : 'text-[#323232]'}`}>Contact Us</Link>
+          <Link href="/Profile" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Contact' ? 'text-orange-400' : 'text-[#323232]'}`}>Profile</Link>
           <Link href="/" className="bg-orange-400 text-white px-3 py-1 rounded-lg items-center text-sm font-semibold hover:bg-white hover:text-orange-400 transition">
             Login
           </Link>

@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import SubsForm from "../components/SubsForm";
 
@@ -9,6 +10,9 @@ export default function Subscriptions () {
             </div>
             <div className="relative items-center justify-center">
                 <SubsForm /> 
+            </div>
+            <div>
+                <Footer />
             </div>
         </>
     )

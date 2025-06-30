@@ -5,14 +5,6 @@ import ProteinPlan from '../../../public/assets/ProteinPlan.png';
 import RoyalPlan from '../../../public/assets/RoyalPlan.png';
 import Image from 'next/image';
 import Footer from '@/app/components/Footer';
-
-type MealPlan = {
-    meal_id: string,
-    plan_name: string,
-    long_desc: string,
-    price: number,
-    menu_examples: string[],
-};
  
 export default async function DetailedMeal ({params}: {params: {id: string}}) {
     const { data, error} = await supabase
