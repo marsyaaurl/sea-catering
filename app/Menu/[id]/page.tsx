@@ -7,16 +7,19 @@ import Image from 'next/image';
 import Footer from '@/app/components/Footer';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function DetailedMeal({ params }: PageProps) {
+  // Await the params promise
+  const { id } = await params;
+  
   const { data, error } = await supabase
     .from('meal_plans')
     .select('*')
-    .eq('meal_id', params.id)
+    .eq('meal_id', id)
     .single();
 
   if (error) {
