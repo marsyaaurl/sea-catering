@@ -4,6 +4,7 @@ import { Krona_One } from 'next/font/google';
 import Link from 'next/link';
 import { Soup } from 'lucide-react';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const kronaOne = Krona_One({
   subsets: ['latin'],
@@ -13,6 +14,7 @@ const kronaOne = Krona_One({
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathName = usePathname();
 
   return (
     <nav className="px-6 py-4 flex w-full items-center justify-between fixed">
@@ -33,11 +35,19 @@ export default function Navbar() {
 
       {/* Nav Links (Desktop) */}
       <div className="hidden md:flex flex-row gap-x-8 text-[#323232] items-center">
-        <Link href="/" className="text-sm font-semibold hover:text-orange-400">Home</Link>
-        <Link href="/" className="text-sm font-semibold hover:text-orange-400">Menu</Link>
-        <Link href="/" className="text-sm font-semibold hover:text-orange-400">Subscription</Link>
-        <Link href="/" className="text-sm font-semibold hover:text-orange-400">Contact Us</Link>
-        <Link href="/" className="bg-orange-400 text-white px-3 py-1 rounded-lg text-sm font-semibold hover:bg-orange-200 hover:text-orange-400 transition">
+        <Link href="/" className={`text-sm font-semibold hover:text-orange-400 hover:border-b-2 hover:border-b-orange-400
+          ${pathName === '/' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Home</Link>
+        
+        <Link href="/Menu" className={`text-sm font-semibold hover:text-orange-400 hover:border-b-2 hover:border-b-orange-400
+          ${pathName === '/Menu' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Menu</Link>
+        
+        <Link href="/Subscription" className={`text-sm font-semibold hover:text-orange-400 hover:border-b-2 hover:border-b-orange-400
+          ${pathName === '/Subscription' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Subscription</Link>
+        
+        <Link href="/" className={`text-sm font-semibold hover:text-orange-400 hover:border-b-2 hover:border-b-orange-400
+          ${pathName === '/Contact' ? 'text-orange-400 border-b-2 border-b-orange-400' : 'text-[#323232]'}`}>Contact</Link>
+        
+        <Link href="/Contact" className="bg-orange-400 text-white px-3 py-1 rounded-lg text-sm font-semibold hover:bg-orange-200 hover:text-orange-400 transition">
           Login
         </Link>
       </div>
@@ -45,10 +55,10 @@ export default function Navbar() {
       {/* Nav Links (Mobile dropdown) */}
       {isOpen && (
         <div className="absolute top-16 left-0 w-full flex flex-col gap-y-3 bg-white px-6 py-4 md:hidden z-10">
-          <Link href="/" className="text-sm font-semibold hover:text-orange-400">Home</Link>
-          <Link href="/" className="text-sm font-semibold hover:text-orange-400">Menu</Link>
-          <Link href="/" className="text-sm font-semibold hover:text-orange-400">Subscription</Link>
-          <Link href="/" className="text-sm font-semibold hover:text-orange-400">Contact Us</Link>
+          <Link href="/" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/' ? 'text-orange-400' : 'text-[#323232]'}`}>Home</Link>
+          <Link href="/Menu" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Menu' ? 'text-orange-400' : 'text-[#323232]'}`}>Menu</Link>
+          <Link href="/Subscription" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Subscription' ? 'text-orange-400' : 'text-[#323232]'}`}>Subscription</Link>
+          <Link href="/Contact" className={`text-sm font-semibold hover:text-orange-400 ${pathName === '/Contact' ? 'text-orange-400' : 'text-[#323232]'}`}>Contact Us</Link>
           <Link href="/" className="bg-orange-400 text-white px-3 py-1 rounded-lg items-center text-sm font-semibold hover:bg-white hover:text-orange-400 transition">
             Login
           </Link>

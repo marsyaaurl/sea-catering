@@ -16,6 +16,10 @@ export default function LandingPage() {
         <>
             {/* Hero Section */}
             <div className="flex flex-col md:flex-row md:gap-x-32 pt-32 pb-36 px-10 gap-y-10 items-center justify-center">
+                <div className='bg-orange-400 rounded-full block md:hidden p-4 hover:scale-105'>
+                    <Image src={foodLandingPage} alt="Food Landing Page" className="bg-transparent w-72" />
+                </div>
+
                 <div className="flex flex-col gap-y-3 mdgap-y-2 md:w-1/2">
                     <h1 className={`${kronaOne.className} text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300 text-4xl`}>
                         SEA Catering
@@ -27,7 +31,7 @@ export default function LandingPage() {
                     </Link>
                 </div>
                 
-                <div className='bg-orange-400 rounded-full p-4 hover:scale-105'>
+                <div className='bg-orange-400 rounded-full p-4 hidden md:block hover:scale-105'>
                     <Image src={foodLandingPage} alt="Food Landing Page" className="bg-transparent w-72" />
                 </div>
             </div>
