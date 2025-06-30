@@ -6,7 +6,7 @@ import RoyalPlan from '../../../public/assets/RoyalPlan.png';
 import Image from 'next/image';
 import Footer from '@/app/components/Footer';
  
-export default async function DetailedMeal ({params}: {params: {id: string}}) {
+export default async function DetailedMeal ({ params }: any) {
     const { data, error} = await supabase
         .from('meal_plans')
         .select('*')
