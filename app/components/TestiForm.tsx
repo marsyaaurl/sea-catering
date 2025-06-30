@@ -9,7 +9,7 @@ export default function TestiForm () {
     const [rating, setRating] = useState(1);
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault
+        e.preventDefault();
         const { error } = await supabase
             .from('testimonials')
             .insert([
@@ -24,7 +24,7 @@ export default function TestiForm () {
             setMessage('')
             setRating(1)
         }
-    }
+    };
     return (
         <>
             <div className="flex flex-col items-center justify-center px-4 py-24">
