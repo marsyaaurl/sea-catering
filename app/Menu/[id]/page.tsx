@@ -6,13 +6,13 @@ import RoyalPlan from '../../../public/assets/RoyalPlan.png';
 import Image from 'next/image';
 import Footer from '@/app/components/Footer';
 
-type MealPageProps = {
+interface PageProps {
   params: {
     id: string;
   };
-};
+}
 
-export default async function DetailedMeal({ params }: MealPageProps) {
+export default async function DetailedMeal({ params }: PageProps) {
   const { data, error } = await supabase
     .from('meal_plans')
     .select('*')
