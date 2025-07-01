@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -20,33 +21,51 @@ export default function SubsForm() {
   const [userID, setUserID] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Check login
+  // Fetch user info + profile name
   useEffect(() => {
-    const checkUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (!data?.user || error) {
+    const fetchUserAndProfile = async () => {
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+
+      if (!userData?.user || userError) {
         window.location.href = '/Login';
-      } else {
-        setUserID(data.user.id);
-        setLoading(false);
+        return;
       }
+
+      setUserID(userData.user.id);
+
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('full_name')
+        .eq('user_id', userData.user.id)
+        .single();
+
+      if (profileError) {
+        console.error('Error fetching profile:', profileError);
+      } else {
+        setName(profileData.full_name);
+      }
+
+      setLoading(false);
     };
-    checkUser();
+
+    fetchUserAndProfile();
   }, []);
 
-  // ✅ Fetch meal plans
+  // Fetch meal plans
   useEffect(() => {
     const fetchMeal = async () => {
       const { data, error } = await supabase
         .from('meal_plans')
         .select('meal_id, plan_name, price');
+
       if (data) setPlans(data);
       if (error) console.error(error);
     };
+
     fetchMeal();
   }, []);
 
-  // ✅ Hitung total harga
+  // Calculate total price
   useEffect(() => {
     const selectedPlan = plans.find((plan) => plan.meal_id === selectedPlanID);
     const planPrice = selectedPlan?.price ?? 0;
@@ -69,7 +88,7 @@ export default function SubsForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !phone || !selectedPlanID || mealType.length === 0 || deliveryDays.length === 0 || !userID) {
+    if (!phone || !selectedPlanID || mealType.length === 0 || deliveryDays.length === 0 || !userID) {
       alert('Please fill in all required fields!');
       return;
     }
@@ -89,7 +108,6 @@ export default function SubsForm() {
       console.error(error);
       alert("Failed to subscribe: " + error.message);
     } else {
-      setName('');
       setPhone('');
       setSelectedPlanID('');
       setMealType([]);
@@ -100,7 +118,6 @@ export default function SubsForm() {
     }
   };
 
-  // ⏳ Jangan render form kalau belum selesai cek login
   if (loading) return <div className="text-center mt-10">Loading...</div>;
 
   return (
@@ -113,6 +130,7 @@ export default function SubsForm() {
             placeholder="Your Name"
             value={name}
             type="text"
+            readOnly
             onChange={(e) => setName(e.target.value)}
             className="border-2 rounded-lg px-3 py-2"
           />

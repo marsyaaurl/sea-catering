@@ -1,4 +1,5 @@
 'use client';
+
 import { supabase } from "@/lib/supabaseClient"; 
 import { useState } from 'react';
 
@@ -23,7 +24,10 @@ export default function SignupForm() {
     if (error) {
       setMessage(error.message);
     } else {
-      // Optional: simpan nama user ke profile kalau diperlukan (tapi tunggu user verified)
+      // Simpan ke localStorage supaya bisa diambil saat login
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('pending_full_name', fullName);
+      }
       setMessage("Signup successful! Please check your email to verify your account.");
     }
   };
@@ -36,36 +40,33 @@ export default function SignupForm() {
         className="flex flex-col gap-y-4 w-full max-w-xl p-6 rounded-lg"
       >
         <div className="flex flex-col">
-          <label htmlFor="fullname" className="font-semibold text-[#323232]">Full Name*</label>
+          <label className="font-semibold text-[#323232]">Full Name*</label>
           <input
             placeholder="Your Full Name"
             value={fullName}
             type="text"
-            name="fullname"
             onChange={(e) => setFullName(e.target.value)}
             className="border-2 rounded-lg px-3 py-2"
             required
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="email" className="font-semibold text-[#323232]">Email*</label>
+          <label className="font-semibold text-[#323232]">Email*</label>
           <input 
             placeholder="Your Email"
             value={email}
             type="email"
-            name="email"
             onChange={(e) => setEmail(e.target.value)}
             className="border-2 rounded-lg px-3 py-2"
             required
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password" className="font-semibold text-[#323232]">Password*</label>
+          <label className="font-semibold text-[#323232]">Password*</label>
           <input 
             placeholder="Your Password"
             value={password}
             type="password"
-            name="password"
             onChange={(e) => setPassword(e.target.value)}
             className="border-2 rounded-lg px-3 py-2"
             required
