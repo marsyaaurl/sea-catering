@@ -6,15 +6,13 @@ export default function SignupForm() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setMessage('');
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -27,8 +25,6 @@ export default function SignupForm() {
     } else {
       setMessage("Signup successful! Please check your email to verify your account.");
     }
-
-    setLoading(false);
   };
 
   return (
