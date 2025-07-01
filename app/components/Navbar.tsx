@@ -21,7 +21,7 @@ export default function Navbar() {
   // ✅ Cek session login
   useEffect(() => {
     const checkSession = async () => {
-      const { data, error } = await supabase.auth.getSession();
+      const { data } = await supabase.auth.getSession();
       if (data.session) {
         setIsLoggedin(true);
       } else {
