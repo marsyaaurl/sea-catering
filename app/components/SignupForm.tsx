@@ -16,7 +16,7 @@ export default function SignupForm() {
       email,
       password,
       options: {
-        emailRedirectTo: 'https://sea-catering-phi.vercel.app/Login', // ✅ Ubah ke domain production kamu
+        emailRedirectTo: 'https://sea-catering-phi.vercel.app/Login',
       }
     });
 
