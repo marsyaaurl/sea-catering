@@ -1,7 +1,6 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
 import { useSession } from "@supabase/auth-helpers-react";
 
 export default function ProtectedRoute({children}: {children: React.ReactNode}) {
