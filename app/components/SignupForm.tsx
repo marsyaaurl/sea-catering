@@ -12,17 +12,18 @@ export default function SignupForm() {
     e.preventDefault();
     setMessage('');
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: 'http://localhost:3000/Login',
+        emailRedirectTo: 'https://sea-catering-phi.vercel.app/Login', // ✅ Ubah ke domain production kamu
       }
     });
 
     if (error) {
       setMessage(error.message);
     } else {
+      // Optional: simpan nama user ke profile kalau diperlukan (tapi tunggu user verified)
       setMessage("Signup successful! Please check your email to verify your account.");
     }
   };
@@ -74,7 +75,8 @@ export default function SignupForm() {
         <button
           type="submit"
           className="bg-orange-400 text-white font-semibold rounded-lg px-4 py-2 hover:bg-orange-200 hover:text-orange-500 transition"
-        > Submit
+        >
+          Submit
         </button>
 
         {message && (
