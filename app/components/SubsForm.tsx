@@ -102,8 +102,103 @@ export default function SubsForm() {
     <div className="flex flex-col items-center justify-center px-4 py-24">
       <h1 className="font-bold text-2xl text-[#323232] bg-transparent">Subscribe to a Meal Plan</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-y-4 w-full max-w-xl p-6 rounded-lg">
-        {/* All input fields remain the same */}
-        {/* ... */}
+        <div className="flex flex-col">
+          <label className="font-semibold text-[#323232]">Full Name *</label>
+          <input
+            placeholder="Your Name"
+            value={name}
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            className="border-2 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="font-semibold text-[#323232]">Phone Number *</label>
+          <input
+            placeholder="08xxxxxxxx"
+            value={phone}
+            type="text"
+            onChange={(e) => setPhone(e.target.value)}
+            className="border-2 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="font-semibold text-[#323232]">Meal Plan *</label>
+          <select
+            value={selectedPlanID}
+            onChange={(e) => setSelectedPlanID(e.target.value)}
+            className="border-2 rounded-lg px-3 py-2"
+          >
+            <option value="">Select a Plan</option>
+            {plans.map((plan) => (
+              <option key={plan.meal_id} value={plan.meal_id}>
+                {plan.plan_name} - Rp{plan.price.toLocaleString('id-ID')}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col">
+          <label className="font-semibold text-[#323232]">Meal Types *</label>
+          <div className="flex flex-wrap gap-4">
+            {['Breakfast', 'Lunch', 'Dinner'].map((type) => (
+              <label key={type} className="flex items-center gap-1">
+                <input
+                  type="checkbox"
+                  value={type}
+                  checked={mealType.includes(type)}
+                  onChange={() => handleMealTypeChange(type)}
+                />
+                {type}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <label className="font-semibold text-[#323232]">Delivery Days *</label>
+          <div className="flex flex-wrap gap-4">
+            {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(
+              (day) => (
+                <label key={day} className="flex items-center gap-1">
+                  <input
+                    type="checkbox"
+                    value={day}
+                    checked={deliveryDays.includes(day)}
+                    onChange={() => handleDeliveryDaysChange(day)}
+                  />
+                  {day}
+                </label>
+              )
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <label className="font-semibold text-[#323232]">Allergies</label>
+          <input
+            placeholder="ex: Nuts, Seafood..."
+            value={allergies}
+            type="text"
+            onChange={(e) => setAllergies(e.target.value)}
+            className="border-2 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        {totalPrice !== undefined && (
+          <div className="text-orange-400 font-semibold text-lg mt-2">
+            Estimated Total: Rp{totalPrice.toLocaleString('id-ID')}
+          </div>
+        )}
+
+        <button
+          type="submit"
+          className="bg-orange-400 text-white font-semibold rounded-lg px-4 py-2 hover:bg-orange-200 hover:text-orange-500 transition"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
