@@ -21,6 +21,7 @@ export default function LoginForm () {
             alert(error.message);
         } else {
             router.push('/Profile');
+            
         }
     };
 
