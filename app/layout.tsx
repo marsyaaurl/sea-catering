@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Krona_One } from "next/font/google";
 import "./globals.css";
+import SupabaseProvider from "@/lib/SupabaseProvider";
 
 // Manrope Font
 const manrope = Manrope({
@@ -36,7 +37,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body>
+        <SupabaseProvider>
+          {children}
+        </SupabaseProvider>
+      </body>
     </html>
   );
 }

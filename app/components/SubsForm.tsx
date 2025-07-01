@@ -18,7 +18,6 @@ export default function SubsForm() {
   const [totalPrice, setTotalPrice] = useState<number | undefined>();
   const [plans, setPlans] = useState<MealPlan[]>([]);
 
-  // Fetch meal plans from Supabase
   useEffect(() => {
     const fetchMeal = async () => {
       const { data, error } = await supabase
@@ -30,7 +29,6 @@ export default function SubsForm() {
     fetchMeal();
   }, []);
 
-  // Auto-update total price
   useEffect(() => {
     const selectedPlan = plans.find((plan) => plan.meal_id === selectedPlanID);
     const planPrice = selectedPlan?.price ?? 0;
@@ -81,6 +79,7 @@ export default function SubsForm() {
       alert('Subscription successful!');
     }
   };
+  console.log('Fetched Plans:', plans);
 
   return (
     <div className="flex flex-col items-center justify-center px-4 py-24">

@@ -26,7 +26,7 @@ export default function LandingPage() {
                     </h1>
                     <h1 className='text-3xl font-bold text-orange-400 bg-transparent'>Healthy Meals, Anytime, Anywhere</h1>
                     <p className='text-justify'>SEA Catering offers healthy meals that can be customized to suit your needs, with delivery available to various cities across Indonesia. What began as a small business has now gone viral, becoming a nationwide solution for healthy eating.</p>
-                    <Link href="/">
+                    <Link href="/Signup">
                         <button className='flex flex-row bg-orange-400 rounded-lg text-md text-white font-semibold px-3 py-1 hover:bg-orange-200 hover:text-orange-400'>Start Now <MoveRight className='ml-2 bg-transparent'/></button>
                     </Link>
                 </div>
